@@ -32,6 +32,7 @@
             this.lblProposition = new System.Windows.Forms.Label();
             this.txtProposition = new System.Windows.Forms.TextBox();
             this.pnlMot = new System.Windows.Forms.Panel();
+            this.btnQuitter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMotATrouver
@@ -68,11 +69,22 @@
             this.pnlMot.Size = new System.Drawing.Size(696, 100);
             this.pnlMot.TabIndex = 3;
             // 
+            // btnQuitter
+            // 
+            this.btnQuitter.Location = new System.Drawing.Point(701, 415);
+            this.btnQuitter.Name = "btnQuitter";
+            this.btnQuitter.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitter.TabIndex = 4;
+            this.btnQuitter.Text = "Quitter";
+            this.btnQuitter.UseVisualStyleBackColor = true;
+            this.btnQuitter.Click += new System.EventHandler(this.btnQuitter_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.pnlMot);
             this.Controls.Add(this.txtProposition);
             this.Controls.Add(this.lblProposition);
@@ -90,6 +102,7 @@
         private System.Windows.Forms.Label lblProposition;
         private System.Windows.Forms.TextBox txtProposition;
         private System.Windows.Forms.Panel pnlMot;
+        private System.Windows.Forms.Button btnQuitter;
     }
 }
 
