@@ -41,9 +41,13 @@ namespace JeuDuPendu
         public string recupererMot()
         {
             int position = generePlace();
+            int erreur = 0;
+            int nbErreurs = 11;
             string motADeviner = tabMots[position];
             char lettres = motADeviner[0];
             char derniereLettre = motADeviner[motADeviner.Length - 1];
+            string proposition = txtProposition.Text;
+            char lettreEnvoyee = char.Parse(proposition.Substring(0,1));
             int left = 20;
             int top = 10;
             int nbElements = motADeviner.Length;
@@ -68,6 +72,28 @@ namespace JeuDuPendu
                 txtBox.Top = top;
                 pnlMot.Controls.Add(txtBox);
                 left += 80;
+
+                while (erreur < nbErreurs)
+                {
+                   for (int j = 0; j < motADeviner.Length; j++)
+                    {
+                        if (lettreEnvoyee == motADeviner[j])
+                        {
+                            txtBox.Tag = j;
+                            txtBox.Text = lettreEnvoyee.ToString();
+                        }
+
+                        else
+                        {
+                            erreur++;
+                        }
+                    }
+                }
+
+                if (erreur == nbErreurs)
+                {
+                    MessageBox.Show("Perdu !");
+                }
             }
             return motADeviner;
         }
@@ -75,7 +101,6 @@ namespace JeuDuPendu
         private void Form1_Load(object sender, EventArgs e)
         {
             recupererMot();
-
 
         }
 
