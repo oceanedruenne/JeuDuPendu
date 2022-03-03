@@ -12,8 +12,11 @@ namespace JeuDuPendu
 {
     public partial class Form1 : Form
     {
+        
         string[] tabMots = new string[10] { "adherente", "coktail", "delation", "dahlia", "nationale",
         "rafteur", "macchabee", "schlitteur","talquer","twister" };
+
+        string motADeviner;
         public Form1()
         {
             InitializeComponent();
@@ -38,88 +41,116 @@ namespace JeuDuPendu
             return motChoisi;
         }
 
-        public string recupererMot()
+        public void genererJeu()
         {
             int position = generePlace();
-            int erreur = 0;
-            int nbErreurs = 11;
-            string motADeviner = tabMots[position];
+            motADeviner = tabMots[position];
             char lettres = motADeviner[0];
             char derniereLettre = motADeviner[motADeviner.Length - 1];
             string proposition = txtProposition.Text;
-            char lettreEnvoyee = char.Parse(proposition.Substring(0,1));
-            int left = 20;
-            int top = 10;
+            int left = 0;
+            int top = 20;
             int nbElements = motADeviner.Length;
 
             for (int i = 0; i < nbElements; i++)
             {
-                TextBox txtBox = new TextBox();
-                txtBox.Tag = i;
-                int emplacement = (int)txtBox.Tag;
+                Label lblPendu = new Label();
+                lblPendu.Tag = i;
+                int emplacement = (int)lblPendu.Tag;
                 if (emplacement == 0)
                 {
-                    txtBox.Text = lettres.ToString();
+                    lblPendu.Text = lettres.ToString();
                 }
 
                 if (emplacement == nbElements - 1)
                 {
-                    txtBox.Text = derniereLettre.ToString();
+                    lblPendu.Text = derniereLettre.ToString();
                 }
 
-                txtBox.Size = new System.Drawing.Size(50, 10);
-                txtBox.Left = left;
-                txtBox.Top = top;
-                pnlMot.Controls.Add(txtBox);
+                lblPendu.Size = new System.Drawing.Size(50, 20);
+                lblPendu.Left = left;
+                lblPendu.Top = top;
+                lblPendu.BackColor = Color.White;
+                pnlMot.Controls.Add(lblPendu);
                 left += 80;
 
-                while (erreur < nbErreurs)
-                {
-                   for (int j = 0; j < motADeviner.Length; j++)
-                    {
-                        if (lettreEnvoyee == motADeviner[j])
-                        {
-                            txtBox.Tag = j;
-                            txtBox.Text = lettreEnvoyee.ToString();
-                        }
+            }
+        }
 
-                        else
-                        {
-                            erreur++;
-                        }
+        public void verifLettres()
+        {
+            int elementsDuMot = motADeviner.Length;
+            char propJoueur = txtProposition.Text[0];
+          
+
+            for (int i = 0; i < elementsDuMot; i++)
+            {
+                if (motADeviner[i] == propJoueur)
+                {
+                    Label lbl = (Label)pnlMot.Controls[i];
+                    lbl.Text = propJoueur.ToString();
+                }
+
+                else
+                {
+                    for (int j = 1; j < 9; j++)
+                    {
+                        PictureBox pbPendu = new PictureBox();
+                        pbPendu.Image = Image.FromFile(@"C:\Users\Océane\source\repos\JeuDuPendu\images\" + j.ToString() + ".png");
+                        pbPendu.Location = new System.Drawing.Point(350, 10);
+                        pbPendu.Size = new System.Drawing.Size(242, 258);
+                        pnlImage.Controls.Add(pbPendu);
                     }
                 }
-
-                if (erreur == nbErreurs)
-                {
-                    MessageBox.Show("Perdu !");
-                }
             }
-            return motADeviner;
+
+            txtProposition.Clear();
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            recupererMot();
+            genererJeu();
 
         }
 
         private void btnRecommencer_Click(object sender, EventArgs e)
         {
-            foreach (TextBox txt in pnlMot.Controls.OfType<TextBox>())
+
+            DialogResult dialogResult = MessageBox.Show("Êtes-vous sûr de recommencer ?", "Recommencer", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
             {
-                txt.Clear();
+
+                MessageBox.Show("Je suis bloquée je ne sais pas comment faire, à l'aide !");
+            
             }
 
         }
 
         private void txtProposition_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 10 || e.KeyChar == 13)
+            txtProposition.MaxLength = 1;
+            if (e.KeyChar == 13 && txtProposition.TextLength != 0)
             {
-                e.Handled = false;
+                verifLettres();
             }
 
+            else if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            txtProposition.Clear();
+
+
+
+        }
+
+        private void btnAide_Click(object sender, EventArgs e)
+        {
+            Label lbl = (Label)pnlMot.Controls[1];
+            lbl.Text = motADeviner[1].ToString();
         }
     }
 }

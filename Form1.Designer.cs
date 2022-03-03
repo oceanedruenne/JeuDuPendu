@@ -34,6 +34,8 @@
             this.pnlMot = new System.Windows.Forms.Panel();
             this.btnQuitter = new System.Windows.Forms.Button();
             this.btnRecommencer = new System.Windows.Forms.Button();
+            this.pnlImage = new System.Windows.Forms.Panel();
+            this.btnAide = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMotATrouver
@@ -74,7 +76,7 @@
             // 
             // btnQuitter
             // 
-            this.btnQuitter.Location = new System.Drawing.Point(872, 415);
+            this.btnQuitter.Location = new System.Drawing.Point(868, 572);
             this.btnQuitter.Name = "btnQuitter";
             this.btnQuitter.Size = new System.Drawing.Size(75, 23);
             this.btnQuitter.TabIndex = 4;
@@ -84,7 +86,7 @@
             // 
             // btnRecommencer
             // 
-            this.btnRecommencer.Location = new System.Drawing.Point(763, 415);
+            this.btnRecommencer.Location = new System.Drawing.Point(759, 572);
             this.btnRecommencer.Name = "btnRecommencer";
             this.btnRecommencer.Size = new System.Drawing.Size(103, 23);
             this.btnRecommencer.TabIndex = 5;
@@ -92,11 +94,30 @@
             this.btnRecommencer.UseVisualStyleBackColor = true;
             this.btnRecommencer.Click += new System.EventHandler(this.btnRecommencer_Click);
             // 
+            // pnlImage
+            // 
+            this.pnlImage.Location = new System.Drawing.Point(46, 261);
+            this.pnlImage.Name = "pnlImage";
+            this.pnlImage.Size = new System.Drawing.Size(901, 296);
+            this.pnlImage.TabIndex = 6;
+            // 
+            // btnAide
+            // 
+            this.btnAide.Location = new System.Drawing.Point(677, 572);
+            this.btnAide.Name = "btnAide";
+            this.btnAide.Size = new System.Drawing.Size(76, 23);
+            this.btnAide.TabIndex = 7;
+            this.btnAide.Text = "Aide";
+            this.btnAide.UseVisualStyleBackColor = true;
+            this.btnAide.Click += new System.EventHandler(this.btnAide_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 450);
+            this.ClientSize = new System.Drawing.Size(975, 642);
+            this.Controls.Add(this.btnAide);
+            this.Controls.Add(this.pnlImage);
             this.Controls.Add(this.btnRecommencer);
             this.Controls.Add(this.btnQuitter);
             this.Controls.Add(this.pnlMot);
@@ -119,6 +140,8 @@
         private System.Windows.Forms.Panel pnlMot;
         private System.Windows.Forms.Button btnQuitter;
         private System.Windows.Forms.Button btnRecommencer;
+        private System.Windows.Forms.Panel pnlImage;
+        private System.Windows.Forms.Button btnAide;
     }
 }
 
